@@ -22,7 +22,7 @@ private:
 public:
 
     ConfigManager(const std::string& filePath) {
-        std::fstream file(filePath);
+        std::ifstream file(filePath);
         if (file.is_open()) {
             try {
                 file >> configData;

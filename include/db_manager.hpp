@@ -6,6 +6,8 @@
 #include <pqxx/pqxx>
 #include <sstream>
 
+#include "config_manager.hpp"
+
 class DbManager {
 
 private:
@@ -15,14 +17,16 @@ private:
 
 public:
 
-    DbManager(std::string& dbName, std::string& dbUser, std::string& dbPassword, std::string& dbAddress, std::string& dbPort) {
-
-        std::stringstream ss;
-        ss << "dbname=" << dbName << " user=" << dbUser << " password=" << dbPassword << " hostaddr=" << dbAddress << " port=" << dbPort;
-        dbPath = ss.str();
-        dbNamee = dbName;
-
-    }
+    DbManager(const DbConfig& config) {
+    std::stringstream ss;
+    ss << "dbname=" << config.name 
+       << " user=" << config.user 
+       << " password=" << config.password 
+       << " hostaddr=" << config.address 
+       << " port=" << config.port;
+    dbPath = ss.str();
+    dbNamee = config.name;
+}
 
     bool connect() {
 

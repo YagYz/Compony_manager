@@ -49,15 +49,25 @@ public:
     }
 
     bool subeEkle(std::string subeAdi) {
-        std::string sql = "INSERT INTO subeler(subead) VALUES ($1);";
-        db.executeParams(sql, subeAdi);
-        return true;
+        try {
+            std::string sql = "INSERT INTO subeler(subead) VALUES ($1);";
+            db.executeParams(sql, subeAdi);
+            return true;
+        }
+        catch (const std::exception& e) {
+            return false;
+        }
     }
 
     bool departmanEkle(std::string departmanAdi) {
-        std::string sql = "INSERT INTO departmanlar(departmanad) VALUES ($1);";
-        db.executeParams(sql, departmanAdi);
-        return true;
+        try {
+            std::string sql = "INSERT INTO departmanlar(departmanad) VALUES ($1);";
+            db.executeParams(sql, departmanAdi);
+            return true;
+        }
+        catch (const std::exception& e) {
+            return false;
+        }
     }
 
 };
